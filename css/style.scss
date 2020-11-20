@@ -1,0 +1,18 @@
+$body-color: #fff;
+
+body {
+  background-color: #fff;
+  color: $body-color;
+}
+
+#container{
+  position: relative;
+  height:calc(6em + 6vw);
+  top: calc(5em + 5vw);
+ 
+}
+
+.col-2{
+background-color: #666;
+  margin: calc(.4em + .4vw);
+}
