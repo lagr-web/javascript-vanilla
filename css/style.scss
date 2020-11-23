@@ -5,14 +5,30 @@ body {
   color: $body-color;
 }
 
-#container{
+#containerBack{
   position: relative;
+  
   height:calc(6em + 6vw);
-  top: calc(5em + 5vw);
+  top: calc(11em + 11vw);
+  z-index: 0;
  
 }
 
-.col-2{
+
+#containerFront{
+  position: relative;
+  height:calc(6em + 6vw);
+  top: calc(5em + 5vw);
+  z-index: 1;
+ 
+}
+
+#back{
+  background-color: #ccc;
+    margin: calc(.4em + .4vw);
+  }
+
+.front{
 background-color: #666;
   margin: calc(.4em + .4vw);
 }

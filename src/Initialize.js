@@ -13,18 +13,26 @@ export default class Initialize {
 
         console.log('im the constructor in init 20');
 
-        let myFirstVar = "ello";
         const amount = 10;
+        const mString = "Du er go"
         this.myFirstArray = [1, 2, 3, 4, 5, 6];
+
+        this.randomRotation = [-1, 1, 0];
 
         //this.setupHTML(this.myFirstArray);
 
 
-        this.myCreateDiv = new CreateDiv({
-            id: "container",
+        this.CreateDivBack = new CreateDiv({
+            id: "containerBack",
             className: 'container d-flex justify-content-center d-flex flex-row',
             addTo: document.body
 
+        });
+
+        this.CreateDivFront = new CreateDiv({
+            id: "containerFront",
+            className: 'container d-flex justify-content-center d-flex flex-row',
+            addTo: document.body
 
         });
 
@@ -37,16 +45,23 @@ export default class Initialize {
       */
 
 
-        //list.map((currElement, index) => {
-        this.myCreateDiv.innerHTML = '' + this.myFirstArray.map((value, item) => {
-            return `<div id = '${value}' class='col-2'>${item}</div>`
 
+        this.CreateDivBack.innerHTML = '' + this.myFirstArray.map((value, item) => {
+
+            return `
+                 <div class = '${"bobling" + value} col-2' id='back'>${item}</div>
+                `
         }).join('') + '';
 
 
-        // document.querySelectorAll('#container')
+        this.CreateDivFront.innerHTML = '' + this.myFirstArray.map((value, item) => {
+            return `
+             <div id = '${value}' class=' front col-2'>${item}</div>
+            `
+        }).join('') + '';
 
-        let getChildrenOfContainer = document.getElementById("container").childNodes;
+
+        let getChildrenOfContainer = document.getElementById("containerFront").childNodes;
 
 
 
@@ -64,32 +79,39 @@ export default class Initialize {
 
             item.addEventListener('click', event => {
 
-                console.log(event.target.style.backgroundColor = "#000000");
-                console.log(event.target.id - 1);
 
-                gsap.to(event.target, {
+                let getTargetID = event.target.id;
+                
+                const rr = this.randomRotation[Math.floor(Math.random() * this.randomRotation.length)];
+
+                gsap.to(document.querySelectorAll("#containerBack > .bobling" + getTargetID), {
                     duration: 1,
-                    y: 100,
-                    ease: 'bounce'
+                    y: -200,
+                    rotation: rr,
+                    ease: 'elastic.out(1, 0.3)'
                 });
 
+               
                 var sound = new Howl({
-                    src: ['./assets/sound/bianka-nedtur.mp3'],
+                    src: ['./assets/sound/bianka-optur.mp3'],
                     autoplay: true,
                     loop: false,
                     volume: 0.5,
 
-                    onend: function () {
+                    onend: () => {
 
-                        gsap.to(event.target, {
+                        console.log(document.querySelectorAll("#containerBack > .bobling" + getTargetID));
+
+                        gsap.to(document.querySelectorAll("#containerBack > .bobling" + getTargetID), {
                             duration: 1,
                             y: 0,
+                            rotation:0,
                             ease: 'bounce',
                             onComplete: () => {
 
 
                                 let sound = new Howl({
-                                    src: ['./assets/sound/bianka-optur.mp3']
+                                    src: ['./assets/sound/bianka-nedtur.mp3']
                                 });
 
                                 sound.play();
@@ -98,8 +120,10 @@ export default class Initialize {
                             }
 
                         });
+                        
                     }
                 });
+               
 
 
 
