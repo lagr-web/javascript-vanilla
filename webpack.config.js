@@ -1,10 +1,8 @@
 const path = require('path');
 const webpack = require('webpack');
-//const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
-//var UnminifiedWebpackPlugin = require('unminified-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const isDevelopment = process.env.NODE_ENV === 'development'
-
+//const LiveReloadPlugin = require('webpack-livereload-plugin');
 
 
 module.exports = {
@@ -16,6 +14,7 @@ module.exports = {
 
 
     plugins: [
+    
         new webpack.ProvidePlugin({
             PIXI: 'pixi.js'
         }),
@@ -60,8 +59,15 @@ module.exports = {
                   // Compiles Sass to CSS
                   "sass-loader",
                 ],
+              },
+             
+             
+              {
+                test: /\.(jpg|png|svg)$/,
+                use: {
+                  loader: 'url-loader',
+                },
               }
-           
         ]
     },
 

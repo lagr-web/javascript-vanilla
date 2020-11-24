@@ -1,26 +1,40 @@
 $body-color: #fff;
+$breakpoint-tablet: 1024px;
 
-body {
-  background-color: #fff;
-  color: $body-color;
+body{
+
+  background: url('../assets/images/imgbackground.jpg') no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+
+background-color: $body-color;
+overflow: hidden; /* Hide scrollbars */
 }
+
+img  {
+  width: 100%;
+height: auto; 
+max-height: 800px;
+-o-object-fit: cover;
+object-fit: cover;
+}
+
 
 #containerBack{
   position: relative;
-  
-  height:calc(6em + 6vw);
-  top: calc(11em + 11vw);
+  padding-left: calc(5em + 5vw);
+  top: calc(15em + 15vw);
   z-index: 0;
- 
 }
 
 
 #containerFront{
   position: relative;
-  height:calc(6em + 6vw);
-  top: calc(5em + 5vw);
+  padding-left: calc(5em + 5vw);
+  top: calc(12em + 12vw);
   z-index: 1;
- 
 }
 
 #back{
@@ -29,6 +43,32 @@ body {
   }
 
 .front{
-background-color: #666;
-  margin: calc(.4em + .4vw);
+margin: calc(.4em + .4vw);
+}
+
+
+@media screen and (max-width: $breakpoint-tablet) {
+
+  body{
+    background: url('../assets/images/imgbackground-1024.jpg') no-repeat center center fixed; 
+  }
+
+  #containerFront{
+   top: calc(24em + 24vw);
+  }
+
+  #containerBack{
+    top: calc(26em + 26vw);
+  }
+
+  #back{
+    background-color: #ccc;
+      margin: calc(-1em + -1vw);
+    }
+  
+  .front{
+  margin: calc(-1em + -1vw);
+  }
+
+
 }

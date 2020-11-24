@@ -7,15 +7,40 @@ import { gsap } from "gsap";
 //import { TweenMax, TimelineMax } from "gsap";
 import { Howl, Howler } from 'howler';
 
+
 export default class Initialize {
 
     constructor() {
 
-        console.log('im the constructor in init 20');
+        //var audio = new Audio("./assets/sound/bianka-optur.mp3");
 
-        const amount = 10;
+
+        console.log('im the constructor');
+
+        const amount = 6;
         const mString = "Du er go"
-        this.myFirstArray = [1, 2, 3, 4, 5, 6];
+        let cWidth = document.clientWidth;
+
+        let cHeight = document.clientHeight;
+        this.myFirstArray = [1, 1, 2];
+
+        //document.body.style.backgroundImage = "url('../assets/images/imgbackground.jpg')";
+
+
+
+        this.assetRef = {
+            backgroundImage: "",
+            images: [
+                "../assets/images/left_box.png",
+                "../assets/images/middle_box.png",
+                "../assets/images/right_box.png"
+            ],
+            sound: [0, 1, 2, 3, 4],
+
+
+        }
+
+        console.log(this.assetRef.images.length);
 
         this.randomRotation = [-1, 1, 0];
 
@@ -46,27 +71,30 @@ export default class Initialize {
 
 
 
-        this.CreateDivBack.innerHTML = '' + this.myFirstArray.map((value, item) => {
+        this.CreateDivBack.innerHTML = '' + this.myFirstArray.map((item, index) => {
 
             return `
-                 <div class = '${"bobling" + value} col-2' id='back'>${item}</div>
+                 <div class = '${"bobling" + index} col-4' id='back'>${index}</div>
                 `
         }).join('') + '';
 
 
-        this.CreateDivFront.innerHTML = '' + this.myFirstArray.map((value, item) => {
+
+        this.CreateDivFront.innerHTML = '' + this.assetRef.images.map((item, index) => {
+
             return `
-             <div id = '${value}' class=' front col-2'>${item}</div>
+            
+             <div id = '${index}' class=' front col-4'><img src = ${item}  id = '${index}' /></div>
             `
         }).join('') + '';
 
 
-        let getChildrenOfContainer = document.getElementById("containerFront").childNodes;
+        let getChildrenOfContainer = document.querySelector("#containerFront").childNodes;
 
 
 
         /*
-     var audio = new Audio("./assets/sound/bianka-nedtur.mp3");
+     var audio = new Audio("./assets/sound/bianka-optur.mp3");
         
         document.onclick = function() {
           audio.play();
@@ -79,19 +107,20 @@ export default class Initialize {
 
             item.addEventListener('click', event => {
 
-
                 let getTargetID = event.target.id;
-                
+
+                console.log({getTargetID});
+
                 const rr = this.randomRotation[Math.floor(Math.random() * this.randomRotation.length)];
 
-                gsap.to(document.querySelectorAll("#containerBack > .bobling" + getTargetID), {
+               gsap.to(document.querySelectorAll("#containerBack > .bobling" + getTargetID), {
                     duration: 1,
-                    y: -200,
+                    y: -event.target.clientHeight - 30,
                     rotation: rr,
                     ease: 'elastic.out(1, 0.3)'
                 });
 
-               
+
                 var sound = new Howl({
                     src: ['./assets/sound/bianka-optur.mp3'],
                     autoplay: true,
@@ -100,12 +129,11 @@ export default class Initialize {
 
                     onend: () => {
 
-                        console.log(document.querySelectorAll("#containerBack > .bobling" + getTargetID));
-
                         gsap.to(document.querySelectorAll("#containerBack > .bobling" + getTargetID), {
+                            delay: 1,
                             duration: 1,
                             y: 0,
-                            rotation:0,
+                            rotation: 0,
                             ease: 'bounce',
                             onComplete: () => {
 
@@ -120,10 +148,10 @@ export default class Initialize {
                             }
 
                         });
-                        
+
                     }
                 });
-               
+
 
 
 
@@ -147,16 +175,6 @@ export default class Initialize {
     </ul>
   `;
 
-    }
-
-    checkLoop(fa) {
-
-        const sweetArray = [2, 3, 4, 5, 35]
-    }
-
-    getController() {
-
-        console.log('get my controller again');
     }
 
 
