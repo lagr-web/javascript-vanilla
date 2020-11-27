@@ -49,6 +49,12 @@ module.exports = {
                 use: ['style-loader', 'css-loader'],
               },
 
+              {
+                test: /\.(jpg|png|svg)$/,
+                  loader: 'url-loader'
+              
+              },
+
             {
                 test: /\.s[ac]ss$/i,
                 use: [
@@ -59,15 +65,12 @@ module.exports = {
                   // Compiles Sass to CSS
                   "sass-loader",
                 ],
-              },
-             
-             
-              {
-                test: /\.(jpg|png|svg)$/,
-                use: {
-                  loader: 'url-loader',
-                },
               }
+
+          
+             
+             
+              
         ]
     },
 

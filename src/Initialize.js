@@ -12,19 +12,16 @@ export default class Initialize {
 
     constructor() {
 
-        //var audio = new Audio("./assets/sound/bianka-optur.mp3");
-
 
         console.log('im the constructor');
 
-        const amount = 6;
+        const amount = 61;
+        console.log(amount);
         const mString = "Du er go"
         let cWidth = document.clientWidth;
 
         let cHeight = document.clientHeight;
         this.myFirstArray = [1, 1, 2];
-
-        //document.body.style.backgroundImage = "url('../assets/images/imgbackground.jpg')";
 
 
 
@@ -35,17 +32,16 @@ export default class Initialize {
                 "../assets/images/middle_box.png",
                 "../assets/images/right_box.png"
             ],
-            sound: [0, 1, 2, 3, 4],
+            sound: [0, 1, 2, 3],
 
 
         }
 
         console.log(this.assetRef.images.length);
 
-        this.randomRotation = [-1, 1, 0];
+        this.randomRotation = [-10, 10, 0];
 
         //this.setupHTML(this.myFirstArray);
-
 
         this.CreateDivBack = new CreateDiv({
             id: "containerBack",
@@ -54,13 +50,14 @@ export default class Initialize {
 
         });
 
+        
         this.CreateDivFront = new CreateDiv({
             id: "containerFront",
             className: 'container d-flex justify-content-center d-flex flex-row',
             addTo: document.body
 
         });
-
+      
 
         /*
         const mApp = document.createElement('div');
@@ -70,11 +67,10 @@ export default class Initialize {
       */
 
 
-
         this.CreateDivBack.innerHTML = '' + this.myFirstArray.map((item, index) => {
 
             return `
-                 <div class = '${"bobling" + index} col-4' id='back'>${index}</div>
+                 <div class = '${"bobling" + index} col-4' id='back'><img src= "../assets/images/ninja.png" /></div>
                 `
         }).join('') + '';
 
@@ -83,7 +79,6 @@ export default class Initialize {
         this.CreateDivFront.innerHTML = '' + this.assetRef.images.map((item, index) => {
 
             return `
-            
              <div id = '${index}' class=' front col-4'><img src = ${item}  id = '${index}' /></div>
             `
         }).join('') + '';
@@ -109,11 +104,11 @@ export default class Initialize {
 
                 let getTargetID = event.target.id;
 
-                console.log({getTargetID});
+                console.log({ getTargetID });
 
                 const rr = this.randomRotation[Math.floor(Math.random() * this.randomRotation.length)];
 
-               gsap.to(document.querySelectorAll("#containerBack > .bobling" + getTargetID), {
+                gsap.to(document.querySelectorAll("#containerBack > .bobling" + getTargetID), {
                     duration: 1,
                     y: -event.target.clientHeight - 30,
                     rotation: rr,
